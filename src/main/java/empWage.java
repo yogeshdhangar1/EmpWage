@@ -1,48 +1,50 @@
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
+
 public class empWage {
-    final int FullTime = 1;
-    final int PartTime = 2;
-    int empRatePerHour ;
-    int noOfWorkingDays;
-    int maxHourInMonth;
-    String name ;
+     static int fullTime = 1;
+     static int partTime = 2;
+    static  int WorkingEmpHrs =20;
+     int empRatePerHour = 20;
+     public static void  computeWage(String Company,int empRatePerHour,int WorkingInMonthDays,int workingHourPerMonth) {
+         int totalEmpHrs = 0;
+         int totalWorkingDays = 0;
+         int empHrs = 0;
+         int totalEmpWage = 0;
+         int workingDaysHourMonth = 100;
+         while (totalEmpHrs < WorkingEmpHrs && totalWorkingDays < workingDaysHourMonth) {
+             totalWorkingDays++;
 
-    public empWage(int empRatePerHour, int noOfWorkingDays, int maxHourInMonth, String name) {
-        this.empRatePerHour = empRatePerHour;
-        this.noOfWorkingDays = noOfWorkingDays;
-        this.maxHourInMonth = maxHourInMonth;
-        this.name = name;
-    }
-    public void multipleCompany() {
-        int empHrs = 0;
-        int totalEmpHrs = 0;
-        int totalWorkingDays = 0;
-        int empWage = 0;
-        int totalEmpWage = 0;
-        System.out.println("The Name Of The Compant is :" + name);
-        while (totalEmpHrs < maxHourInMonth && totalWorkingDays < noOfWorkingDays) {
-            totalWorkingDays++;
-            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-            switch (empCheck) {
-                case FullTime:
-                    empHrs = 8;
-                    break;
-                case PartTime:
-                    empHrs = 4;
-                    break;
-                default:
-                    empHrs = 0;
-            }
-            empWage = empHrs * empRatePerHour;
-            totalEmpWage += empWage;
-            System.out.println("Salary of Employee :" + empWage);
-        }
-        System.out.println("The Total Salary Of  " + name + " Company Is  : " + totalEmpWage);
-    }
-
+             int empCheck = (int) Math.floor(Math.random()*10)%3;
+             switch (empCheck) {
+                 case 1:
+                     empHrs = 8;
+                     System.out.println("Employee is Present");
+                     System.out.println("Emp Wage :" + empHrs * empRatePerHour);
+                     totalEmpHrs += fullTime;
+                     System.out.println("Total Emp Wage Is :" + totalEmpHrs * empRatePerHour);
+                     break;
+                 case 2:
+                     empHrs = 4;
+                     System.out.println("Employee is Part Time");
+                     System.out.println("EmpWage is :" + empHrs * empRatePerHour);
+                     totalEmpHrs += partTime;
+                     break;
+                 case 0:
+                     empHrs = 0;
+                     System.out.println("Employee is Absent ");
+                     totalEmpHrs = 0;
+                     totalEmpHrs += empHrs;
+                     break;
+             }
+             totalEmpWage = empHrs * empRatePerHour ;
+             totalEmpHrs += empHrs;
+             System.out.println( "The salary of Employee is" + empHrs );
+         }
+         System.out.println("The Total Salary Of  "+Company+" Company Is  : "+totalEmpHrs);
+         System.out.println("**********************************************************************************");
+     }
     public static void main(String[] args) {
-        empWage Reliance = new empWage(20,26,100,"Reliance");
-        Reliance.multipleCompany();
-        empWage dMart = new empWage(20,25,100,"DMart");
-        dMart.multipleCompany();
+        computeWage("Tcs",20,26,100);
+       computeWage("Wipro",20,26,156);
     }
 }
